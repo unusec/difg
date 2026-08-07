@@ -37,6 +37,10 @@ jobs:
 
       - name: Build VitePress site
         run: npm run build
+        env:
+          VITE_DISCORD_WEBHOOK_URL: ${{ secrets.VITE_DISCORD_WEBHOOK_URL }}
+          VITE_GITHUB_TOKEN: ${{ secrets.VITE_GITHUB_TOKEN }}
+          VITE_GITHUB_REPO: ${{ secrets.VITE_GITHUB_REPO }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

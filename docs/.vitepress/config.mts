@@ -5,10 +5,10 @@ export default defineConfig({
   description: "Diablo Immortal Familiars Knowledge Base & Conversion Guide",
   appearance: 'force-dark',
   cleanUrls: true,
-  base: '/',
+  base: '/petmasters/',
 
   head: [
-    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/skull-symmetric-solo-bone.svg' }],
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/petmasters/skull-symmetric-solo-bone.svg' }],
     ['meta', { name: 'theme-color', content: '#e5ad35' }],
   ],
 
