@@ -1,0 +1,71 @@
+/* ---------------------------------------------------------------
+   Portal loop background (home page only)
+   Appended to docs/.vitepress/theme/custom.css
+   --------------------------------------------------------------- */
+
+/* let the canvas show through the home layout */
+html:has(.portal-bg-root) body,
+html:has(.portal-bg-root) .VPContent.is-home,
+html:has(.portal-bg-root) .VPHome {
+  background: transparent;
+}
+
+html:has(.portal-bg-root) body {
+  background: #050406;
+}
+
+/* content rides above the canvas */
+html:has(.portal-bg-root) .VPContent.is-home {
+  position: relative;
+  z-index: 1;
+}
+
+/* first screen of the home page is the portal — give the hero room to breathe */
+html:has(.portal-bg-root) .VPHome .VPHero {
+  min-height: calc(100vh - var(--vp-nav-height, 64px));
+  display: flex;
+  align-items: center;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+/* legibility over the altar */
+html:has(.portal-bg-root) .VPHome .VPHero .name,
+html:has(.portal-bg-root) .VPHome .VPHero .text {
+  text-shadow: 0 2px 28px rgba(0, 0, 0, 0.95), 0 0 60px rgba(0, 0, 0, 0.8);
+}
+
+html:has(.portal-bg-root) .VPHome .VPHero .tagline {
+  color: rgba(240, 226, 220, 0.82);
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.95);
+}
+
+html:has(.portal-bg-root) .VPHome .VPHero .image-bg {
+  opacity: 0.35;
+}
+
+/* features + prose below the fold get a readable panel over the dark plate */
+html:has(.portal-bg-root) .VPHome .VPFeatures,
+html:has(.portal-bg-root) .VPHome .vp-doc {
+  position: relative;
+  background: var(--vp-c-bg);
+}
+
+html:has(.portal-bg-root) .VPHome .VPFeatures::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -120px;
+  height: 120px;
+  background: linear-gradient(180deg, rgba(13, 15, 20, 0) 0%, var(--vp-c-bg) 100%);
+  pointer-events: none;
+}
+
+/* Safari < 16.4 / older browsers without :has() — plain fallback */
+@supports not selector(html:has(.portal-bg-root)) {
+  .VPContent.is-home,
+  .VPHome {
+    background: transparent;
+  }
+}

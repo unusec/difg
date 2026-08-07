@@ -1,0 +1,66 @@
+import { defineConfig } from 'vitepress'
+
+export default defineConfig({
+  title: "PetMasters",
+  description: "Diablo Immortal Familiars Knowledge Base & Conversion Guide",
+  appearance: 'force-dark',
+  cleanUrls: true,
+  base: '/',
+
+  head: [
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/skull-symmetric-solo-bone.svg' }],
+    ['meta', { name: 'theme-color', content: '#e5ad35' }],
+  ],
+
+  themeConfig: {
+    logo: '/skull-symmetric-solo-bone.svg',
+    siteTitle: 'PetMasters',
+
+    nav: [
+      { text: 'Guides', link: '/guides/familiars-classification' },
+      { text: 'How to Contribute', link: '/community/contribution-guide' }
+    ],
+
+    sidebar: [
+      {
+        text: '🐾 Getting Started',
+        items: [
+          { text: 'Overview & Introduction', link: '/' },
+          { text: 'Familiar Classification', link: '/guides/familiars-classification' },
+        ]
+      },
+      {
+        text: '⚡ Mechanics & Breeding',
+        items: [
+          { text: 'Skills & Attributes Tiers', link: '/guides/skills-and-attributes' },
+          { text: 'Conversions & Conversion Stones', link: '/guides/conversion-guide' },
+          { text: 'Traits Stacking & Priorities', link: '/guides/traits-guide' },
+        ]
+      },
+      {
+        text: '🏛️ Westmarch Market & NPCs',
+        items: [
+          { text: 'Nisza NPC Guide', link: '/guides/nisza-npc' },
+        ]
+      },
+      {
+        text: '🤝 Community',
+        items: [
+          { text: 'Contribution Guidelines', link: '/community/contribution-guide' },
+        ]
+      }
+    ],
+
+    search: {
+      provider: 'local'
+    },
+
+    socialLinks: [
+      { icon: 'discord', link: 'https://discord.gg/FKxn3HVW3d' }
+    ],
+
+    footer: {
+      copyright: 'Created by PetMasters Discord Community'
+    }
+  }
+})
