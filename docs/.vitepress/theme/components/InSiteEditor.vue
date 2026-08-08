@@ -13,31 +13,29 @@
           </div>
 
           <div class="editor-body">
-            <template>
-              <p class="editor-hint">
-                Edit the markdown below. Your changes go to the Discord moderation queue before going live.
-              </p>
+            <p class="editor-hint">
+              Edit the markdown below. Your changes go to the Discord moderation queue before going live.
+            </p>
 
-              <div class="editor-meta-row">
-                <div class="editor-input-group">
-                  <label>Your Name / Discord Handle</label>
-                  <input v-model="author" type="text" placeholder="@PetMaster99 or Anonymous" />
-                </div>
-                <div class="editor-input-group">
-                  <label>Brief Description of Change</label>
-                  <input v-model="summary" type="text" placeholder="e.g. Added Varog trait stacking details" />
-                </div>
+            <div class="editor-meta-row">
+              <div class="editor-input-group">
+                <label>Your Name / Discord Handle</label>
+                <input v-model="author" type="text" placeholder="@PetMaster99 or Anonymous" />
               </div>
+              <div class="editor-input-group">
+                <label>Brief Description of Change</label>
+                <input v-model="summary" type="text" placeholder="e.g. Added Varog trait stacking details" />
+              </div>
+            </div>
 
-              <div class="editor-input-group editor-content-group">
-                <label>Page Markdown</label>
-                <textarea v-model="content" class="editor-content-area" spellcheck="false"></textarea>
-              </div>
+            <div class="editor-input-group editor-content-group">
+              <label>Page Markdown</label>
+              <textarea v-model="content" class="editor-content-area" spellcheck="false"></textarea>
+            </div>
 
-              <div v-if="submitted" class="editor-success">
-                🎉 <strong>Thank you!</strong> Your suggestion has been submitted for mod review!
-              </div>
-            </template>
+            <div v-if="submitted" class="editor-success">
+              🎉 <strong>Thank you!</strong> Your suggestion has been submitted for mod review!
+            </div>
           </div>
 
           <div class="editor-footer">
