@@ -13,9 +13,7 @@
           </div>
 
           <div class="editor-body">
-            <div v-if="loading" class="editor-loading">Loading page content …</div>
-
-            <template v-else>
+            <template>
               <p class="editor-hint">
                 Edit the markdown below. Your changes go to the Discord moderation queue before going live.
               </p>
@@ -44,7 +42,7 @@
 
           <div class="editor-footer">
             <button class="editor-cancel-btn" @click="closeEditor">Cancel</button>
-            <button class="editor-submit-btn" :disabled="submitting || loading" @click="submitEdit">
+            <button class="editor-submit-btn" :disabled="submitting" @click="submitEdit">
               {{ submitting ? 'Submitting…' : 'Submit for Mod Review' }}
             </button>
           </div>
@@ -61,7 +59,6 @@ import { useData } from 'vitepress'
 const { page } = useData()
 
 const isOpen = ref(false)
-const loading = ref(false)
 const submitting = ref(false)
 const submitted = ref(false)
 
@@ -71,18 +68,10 @@ const content = ref('')
 
 const pageTitle = computed(() => page.value.title || page.value.relativePath)
 
-async function openEditor() {
+function openEditor() {
   isOpen.value = true
   submitted.value = false
-  loading.value = true
-  try {
-    const res = await fetch(`/${page.value.relativePath}`)
-    content.value = res.ok ? await res.text() : fallback()
-  } catch {
-    content.value = fallback()
-  } finally {
-    loading.value = false
-  }
+  content.value = page.value.rawMarkdown || fallback()
 }
 
 function fallback() {

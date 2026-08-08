@@ -1,4 +1,9 @@
 import { defineConfig } from 'vitepress'
+import { readFileSync } from 'fs'
+import { resolve, dirname } from 'path'
+import { fileURLToPath } from 'url'
+
+const __dirname = dirname(fileURLToPath(import.meta.url))
 
 export default defineConfig({
   title: "PetMasters",
@@ -61,6 +66,15 @@ export default defineConfig({
 
     footer: {
       copyright: 'Created by PetMasters Discord Community'
+    }
+  },
+
+  transformPageData(pageData) {
+    const mdPath = resolve(__dirname, '..', pageData.relativePath)
+    try {
+      ;(pageData as any).rawMarkdown = readFileSync(mdPath, 'utf-8')
+    } catch {
+      ;(pageData as any).rawMarkdown = ''
     }
   }
 })
