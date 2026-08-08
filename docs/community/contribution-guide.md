@@ -1,6 +1,6 @@
 # How to Contribute & Suggest Updates
 
-We welcome all PetMasters Discord members to contribute knowledge, correction updates, and new trait setups to our guide!
+We welcome all to contribute knowledge/correction updates to our guide!
 
 ---
 
