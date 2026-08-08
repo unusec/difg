@@ -13,7 +13,7 @@
           </div>
 
           <div class="editor-body">
-            <div v-if="loading" class="editor-loading">Loading page content…</div>
+            <div v-if="loading" class="editor-loading">Loading page content …</div>
 
             <template v-else>
               <p class="editor-hint">
@@ -97,7 +97,7 @@ function closeEditor() {
 // Returns the PR URL or null if GitHub is not configured.
 async function createGitHubPR() {
   const token = import.meta.env.VITE_GITHUB_TOKEN
-  const repo  = import.meta.env.VITE_GITHUB_REPO // e.g. "UnuSec/petmasters"
+  const repo = import.meta.env.VITE_GITHUB_REPO // e.g. "UnuSec/petmasters"
   if (!token || !repo) return null
 
   const headers = {
@@ -106,9 +106,9 @@ async function createGitHubPR() {
     'X-GitHub-Api-Version': '2022-11-28',
     'Content-Type': 'application/json'
   }
-  const api      = `https://api.github.com/repos/${repo}`
+  const api = `https://api.github.com/repos/${repo}`
   const filePath = `docs/${page.value.relativePath}`
-  const branch   = `suggestion/${Date.now()}`
+  const branch = `suggestion/${Date.now()}`
 
   // Get default branch and its HEAD SHA
   const { default_branch } = await fetch(api, { headers }).then(r => r.json())
@@ -122,7 +122,7 @@ async function createGitHubPR() {
   ).then(r => r.json())
 
   // UTF-8-safe base64 encode
-  const bytes  = new TextEncoder().encode(content.value)
+  const bytes = new TextEncoder().encode(content.value)
   const binary = Array.from(bytes, b => String.fromCharCode(b)).join('')
   const encoded = btoa(binary)
 
@@ -174,9 +174,9 @@ async function submitEdit() {
 
     // 2. Build Discord embed
     const fields = [
-      { name: '📄 Page',         value: pageTitle.value,           inline: true },
+      { name: '📄 Page', value: pageTitle.value, inline: true },
       { name: '👤 Suggested by', value: author.value || 'Anonymous', inline: true },
-      { name: '📋 Change',       value: summary.value }
+      { name: '📋 Change', value: summary.value }
     ]
     if (prUrl) {
       fields.push({ name: '🔗 Pull Request', value: `[Review & Merge on GitHub](${prUrl})` })
@@ -197,8 +197,8 @@ async function submitEdit() {
 
     // 3. Post to Discord — attach the .md file as backup even when a PR exists
     const filename = page.value.relativePath.replace(/\//g, '_')
-    const file     = new Blob([content.value], { type: 'text/plain' })
-    const form     = new FormData()
+    const file = new Blob([content.value], { type: 'text/plain' })
+    const form = new FormData()
     form.append('payload_json', JSON.stringify({ embeds: [embed] }))
     form.append('files[0]', file, filename)
 
